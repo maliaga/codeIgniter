@@ -5,6 +5,7 @@ class Codigofacilito extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->helper('myhelper');
+        $this->load->helper('form');
     }
 
     function index(){
@@ -18,6 +19,12 @@ class Codigofacilito extends CI_Controller {
     function holamundo(){
         $this->load->view('codigofacilito/headers');
         $this->load->view('codigofacilito/bienvenido');
+        $this->load->view('codigofacilito/footers');
+    }
+
+    function nuevo(){
+        $this->load->view('codigofacilito/headers');
+        $this->load->view('codigofacilito/formulario');
         $this->load->view('codigofacilito/footers');
     }
 

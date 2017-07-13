@@ -12,34 +12,14 @@ class Codigofacilito extends CI_Controller {
     function index(){
         $this->load->library('menu', array('Index', 'Courses', 'Contact'));
         $data['my_menu'] = $this->menu->buildMenu();
-        $this->load->view('codigofacilito/headers');
+        $this->load->view('commons/headers');
         $this->load->view('codigofacilito/bienvenido', $data );
-        $this->load->view('codigofacilito/footers');
+        $this->load->view('commons/footers');
     }
 
     function holamundo(){
-        $this->load->view('codigofacilito/headers');
+        $this->load->view('commons/headers');
         $this->load->view('codigofacilito/bienvenido');
-        $this->load->view('codigofacilito/footers');
+        $this->load->view('commons/footers');
     }
-
-    function nuevo(){
-        $this->load->view('codigofacilito/headers');
-        $this->load->view('codigofacilito/formulario');
-        $this->load->view('codigofacilito/footers');
-    }
-
-    function getData(){
-        $data = array(
-            'name' => $this->input->post('name'),
-            'videos' => $this->input->post('videos')
-        );
-
-        $this->codigofacilito_model->addCourse($data);
-
-        $this->load->view('codigofacilito/headers');
-        $this->load->view('codigofacilito/bienvenido');
-        $this->load->view('codigofacilito/footers');
-    }
-
 }

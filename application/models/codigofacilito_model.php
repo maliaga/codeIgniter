@@ -25,5 +25,13 @@ class codigofacilito_model extends CI_Model
         if ($query->num_rows() > 0) return $query;
         else return false;
     }
+
+    function getCourse($id)
+    {
+        $this->db->where('idCurso',$id);
+        $query = $this->db->get('cursos');
+        if ($query->num_rows() > 0) return $query;
+        else return false;
+    }
 }
 

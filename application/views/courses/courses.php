@@ -8,10 +8,14 @@
 ?>
 <body>
 <?php
-    foreach ($courses->result() as $course){ ?>
+if ($courses) {
+    foreach ($courses->result() as $course) { ?>
         <ul>
-            <li><?= $course->nombre; ?></li>
+            <li><a href=" <?= $course->idCurso; ?>"><?= $course->nombre; ?></a></li>
         </ul>
-<?php } ?>
+    <?php }
+} else {
+    echo "Data not found.";
+} ?>
 </body>
 

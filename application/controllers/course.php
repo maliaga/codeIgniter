@@ -23,8 +23,15 @@ class Course extends CI_Controller
         $this->load->view('commons/footers');
     }
 
-    function index(){
-        $data['courses'] = $this->codigofacilito_model->getAllCourses();
+    function index()
+    {
+        $data['segment'] = $this->uri->segment(3);
+
+        if (!$data['segment']) {
+            $data['courses'] = $this->codigofacilito_model->getAllCourses();
+        } else {
+            $data['courses'] = $this->codigofacilito_model->getCourse($data['segment']);
+        }
 
         $this->load->view('commons/headers');
         $this->load->view('courses/courses', $data);

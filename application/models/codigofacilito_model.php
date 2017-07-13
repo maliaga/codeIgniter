@@ -28,10 +28,21 @@ class codigofacilito_model extends CI_Model
 
     function getCourse($id)
     {
-        $this->db->where('idCurso',$id);
+        $this->db->where('idCurso', $id);
         $query = $this->db->get('cursos');
         if ($query->num_rows() > 0) return $query;
         else return false;
+    }
+
+    function updateCourse($id, $course)
+    {
+        $data = array(
+            'nombre' => $course['name'],
+            'cantidad' => $course['videos']
+        );
+
+        $this->db->where('idCurso', $id);
+        $query = $this->db->update('cursos', $data);
     }
 }
 

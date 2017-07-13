@@ -51,4 +51,29 @@ class Course extends CI_Controller
         $this->load->view('codigofacilito/bienvenido');
         $this->load->view('commons/footers');
     }
+
+    function edit()
+    {
+        $data['id'] = $this->uri->segment(3);
+
+        $data['course'] = $this->codigofacilito_model->getCourse($data['id']);
+
+        $this->load->view('commons/headers');
+        $this->load->view('courses/edit', $data);
+        $this->load->view('commons/footers');
+    }
+
+    function update()
+    {
+        $data = array(
+            'name' => $this->input->post('name'),
+            'videos' => $this->input->post('videos')
+        );
+
+        $this->codigofacilito_model->updateCourse($this->uri->segment(3), $data);
+
+        $this->load->view('commons/headers');
+        $this->load->view('codigofacilito/bienvenido');
+        $this->load->view('commons/footers');
+    }
 }

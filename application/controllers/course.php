@@ -13,13 +13,13 @@ class Course extends CI_Controller
         parent::__construct();
         $this->load->helper('myhelper');
         $this->load->helper('form');
-        $this->load->model('codigofacilito_model');
+        $this->load->model('courses_model');
     }
 
-    function new()
+    function newCourse()
     {
         $this->load->view('commons/headers');
-        $this->load->view('courses/formulario');
+        $this->load->view('courses/form');
         $this->load->view('commons/footers');
     }
 
@@ -28,9 +28,9 @@ class Course extends CI_Controller
         $data['segment'] = $this->uri->segment(3);
 
         if (!$data['segment']) {
-            $data['courses'] = $this->codigofacilito_model->getAllCourses();
+            $data['courses'] = $this->courses_model->getAllCourses();
         } else {
-            $data['courses'] = $this->codigofacilito_model->getCourse($data['segment']);
+            $data['courses'] = $this->courses_model->getCourse($data['segment']);
         }
 
         $this->load->view('commons/headers');
@@ -45,10 +45,10 @@ class Course extends CI_Controller
             'videos' => $this->input->post('videos')
         );
 
-        $this->codigofacilito_model->addCourse($data);
+        $this->courses_model->addCourse($data);
 
         $this->load->view('commons/headers');
-        $this->load->view('codigofacilito/bienvenido');
+        $this->load->view('home/welcome');
         $this->load->view('commons/footers');
     }
 
@@ -56,7 +56,7 @@ class Course extends CI_Controller
     {
         $data['id'] = $this->uri->segment(3);
 
-        $data['course'] = $this->codigofacilito_model->getCourse($data['id']);
+        $data['course'] = $this->courses_model->getCourse($data['id']);
 
         $this->load->view('commons/headers');
         $this->load->view('courses/edit', $data);
@@ -70,16 +70,14 @@ class Course extends CI_Controller
             'videos' => $this->input->post('videos')
         );
 
-        $this->codigofacilito_model->updateCourse($this->uri->segment(3), $data);
+        $this->courses_model->updateCourse($this->uri->segment(3), $data);
 
-        $this->load->view('commons/headers');
-        $this->load->view('codigofacilito/bienvenido');
-        $this->load->view('commons/footers');
+        redirect(base_url());
     }
 
     function delete()
     {
         $id = $this->uri->segment(3);
-        $this->codigofacilito_model->deleteCourse($id);
+        $this->courses_model->deleteCourse($id);
     }
 }

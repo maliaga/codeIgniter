@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Created by PhpStorm.
@@ -8,13 +8,22 @@
  */
 class codigofacilito_model extends CI_Model
 {
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    function addCourse($data){
-        $this->db->insert('cursos', array('nombre' => $data['name'],'cantidad' => $data['videos'] ));
+    function addCourse($data)
+    {
+        $this->db->insert('cursos', array('nombre' => $data['name'], 'cantidad' => $data['videos']));
+    }
+
+    function getAllCourses()
+    {
+        $query = $this->db->get('cursos');
+        if ($query->num_rows() > 0) return $query;
+        else return false;
     }
 }
 

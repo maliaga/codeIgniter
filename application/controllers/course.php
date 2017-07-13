@@ -76,4 +76,10 @@ class Course extends CI_Controller
         $this->load->view('codigofacilito/bienvenido');
         $this->load->view('commons/footers');
     }
+
+    function delete()
+    {
+        $id = $this->uri->segment(3);
+        $this->codigofacilito_model->deleteCourse($id);
+    }
 }

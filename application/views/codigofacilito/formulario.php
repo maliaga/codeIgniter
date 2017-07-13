@@ -7,7 +7,7 @@
  */
 ?>
 <body>
-<?= form_open("/codigofacilito/recibirdatos") ?>
+<?= form_open("/codigofacilito/getdata") ?>
 <?php
 $name = array(
     'name' => 'name',

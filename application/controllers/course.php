@@ -19,11 +19,19 @@ class Course extends CI_Controller
     function new()
     {
         $this->load->view('commons/headers');
-        $this->load->view('cursos/formulario');
+        $this->load->view('courses/formulario');
         $this->load->view('commons/footers');
     }
 
-    function getData()
+    function index(){
+        $data['courses'] = $this->codigofacilito_model->getAllCourses();
+
+        $this->load->view('commons/headers');
+        $this->load->view('courses/courses', $data);
+        $this->load->view('commons/footers');
+    }
+
+    function saveData()
     {
         $data = array(
             'name' => $this->input->post('name'),

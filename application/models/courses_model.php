@@ -6,7 +6,7 @@
  * Date: 7/12/17
  * Time: 21:55
  */
-class codigofacilito_model extends CI_Model
+class courses_model extends CI_Model
 {
     function __construct()
     {

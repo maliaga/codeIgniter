@@ -42,7 +42,15 @@ class codigofacilito_model extends CI_Model
         );
 
         $this->db->where('idCurso', $id);
-        $query = $this->db->update('cursos', $data);
+        $this->db->update('cursos', $data);
+    }
+
+    function deleteCourse($id)
+    {
+        $query = "DELETE FROM Cursos WHERE idCurso = $id";
+        $this->db->query($query);
+
+        //$this->db->delete('cursos', array('idCurso' => $id));
     }
 }
 
